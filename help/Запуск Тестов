@@ -1,0 +1,16 @@
+Отчет
+allure serve C:\Users\admin\Desktop\Sweet\sweettv\target\allure-results
+
+
+Продакшн авторизовання сторона
+mvn '-Dtest=tests.Prod.Authoriz.*Test'clean test
+
+Продакшн не авторизовання сторона
+mvn '-Dtest=tests.Prod.NoAuthoriz.*Test'clean test
+
+
+Стейдж авторизовання сторона
+mvn '-Dtest=tests.Stg.Authoriz.*Test'clean  test
+
+Стейдж не авторизовання сторона
+mvn '-Dtest=tests.Stg.NoAuthoriz.*Test'clean test

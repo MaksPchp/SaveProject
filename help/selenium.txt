@@ -1,0 +1,84 @@
+Нажать на элемент 
+driver.findElement(By.name("login")).click();
+
+Нажать кнопку на клавиатуре 
+DriverProvider.getDriver().findElement(By.xpath("//*")).sendKeys(Keys.CONTROL);
+https://www.w3.org/TR/webdriver/#keyboard-actions
+
+Навести фокус на элемент 
+new Actions(DriverProvider.getDriver()).moveToElement(homePage.getBurgerMenuButton()).perform();
+
+Проверить УРЛ страницы
+Assert.assertTrue(DriverProvider.getDriver().getCurrentUrl().equals(URL_TV_PAGE));
+
+Перейти на другую вкладку 
+((JavascriptExecutor)DriverProvider.getDriver()).executeScript("window.open()");
+ArrayList<String> tabs = new ArrayList<String>(DriverProvider.getDriver().getWindowHandles());
+DriverProvider.getDriver().switchTo().window(tabs.get(1));
+DriverProvider.getDriver().get("http://192.168.205.201/sms_gate/");
+DriverProvider.getDriver().findElement(By.xpath("//a[@href='#codebysms']")).click();
+DriverProvider.getDriver().findElement(By.xpath("//input[@ng-change='search(search_phone)']")).sendKeys("380945623698");
+WebElement kode = DriverProvider.getDriver().findElement(By.xpath("//div[@ng-bind='sms_code']"));
+
+Нажать Enter 
+Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+
+Ожидание 
+ new WebDriverWait(DriverProvider.getDriver(), 10)
+                .until(ExpectedConditions.visibilityOf(modalAutorizationPage.getTextLoginOrGerestration()));
+
+Ожидание урл
+new WebDriverWait(DriverProvider.getDriver(), 10)
+                .until(ExpectedConditions.urlToBe(URL_STG_CINEMA_PAGE_ENGLISH));
+
+Работа с всплывающими окнами 
+DriverProvider.getDriver().switchTo().alert().accept();//For accept
+DriverProvider.getDriver().switchTo().alert().dismiss();
+
+Обновить страницу 
+DriverProvider.getDriver().navigate().refresh();
+
+Сон 
+Thread.sleep(2000);
+
+Добавить куки для авторизации 
+Date date = new Date(12121212121211212L);
+DriverProvider.getDriver().manage().addCookie(
+                new Cookie.Builder("refresh_token","559f4c27-70fa-494f-a7a9-52b24342dc1b")
+                        .domain("sweet.tv")
+                        .expiresOn(date)
+                        .path("/")
+                        .build());
+
+Скролим вниз 
+ ((JavascriptExecutor) DriverProvider.getDriver()).executeScript("window.scrollBy(0,250)");
+
+Положить тест 
+fail();
+
+Работа с алертом
+ String MainWindow = DriverProvider.getDriver().getWindowHandle();
+
+        for (String activeHandle : DriverProvider.getDriver().getWindowHandles()) {
+            if (!activeHandle.equals(MainWindow)) {
+                DriverProvider.getDriver().switchTo().window(activeHandle);
+            }
+        }
+        // Действия
+        DriverProvider.getDriver().switchTo().window(MainWindow);
+
+Сменить юзер агента 
+ChromeOptions options = new ChromeOptions();
+        options.addArguments("user-agent='Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) " +
+                "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1'");
+        WebDriver webDriver = new ChromeDriver(options);
+        webDriver.manage().window().setSize(new Dimension(375, 812));
+        webDriver.get(URL_STG_HOME_PAGE_UKRAINE);
+
+Сон 
+Thread.sleep(1500);
+
+Удалить теги из теста
+i.replaceAll("(<.*?>)|(&.*?;)|([ ]{2,})", "");
